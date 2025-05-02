@@ -29,12 +29,12 @@ function draw() {
     }
   }
 
-  // 進行水平翻轉
-  push(); // 開啟變換模式
-  scale(-1, 1); // 水平翻轉
-  // 修改圖片顯示位置，避免跑出畫布
-  image(graphicsLayer, -(width - capture.width) / 2, (height - capture.height) / 2);
-  pop(); // 恢復原來的畫布狀態
+  // 翻轉畫面並保持在螢幕正中央
+  push(); // 保存當前的變換狀態
+  translate(width / 2, height / 2); // 移動到畫面中心
+  scale(-1, 1); // 進行左右翻轉
+  image(graphicsLayer, -capture.width / 2, -capture.height / 2); // 顯示翻轉後的圖層
+  pop(); // 恢復變換狀態
 }
 
 function windowResized() {
