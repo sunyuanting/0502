@@ -11,11 +11,10 @@ function setup() {
 
 function draw() {
   background('#ecf8f8'); // 設定背景顏色為 ecf8f8
-
   push();
   translate((width + capture.width) / 2, (height - capture.height) / 2); // 移動到正確位置
   scale(-1, 1); // 左右翻轉
-  image(capture, 0, 0); // 繪製翻轉後的影像
+  image(graphicsLayer, 0, 0); // 繪製翻轉後的影像
   pop();
 
   // 在影像上方繪製圖層
