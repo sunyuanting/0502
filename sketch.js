@@ -12,11 +12,11 @@ function setup() {
 function draw() {
   background('#ecf8f8'); // 設定背景顏色為 ecf8f8
 
-  // 繪製攝影機影像
+  // 繪製攝影機影像，直接水平翻轉
   push(); // 儲存當前繪圖狀態
-  translate((width + capture.width) / 2, (height - capture.height) / 2); // 將影像移動到視窗中央
+  translate(width, 0); // 將原點移動到右上角
   scale(-1, 1); // 水平翻轉影像
-  image(capture, -capture.width, 0, capture.width, capture.height); // 繪製翻轉後的影像
+  image(capture, 0, (height - capture.height) / 2, capture.width, capture.height); // 繪製翻轉後的影像
   pop(); // 恢復原始繪圖狀態
 
   // 在影像上方繪製圖層
