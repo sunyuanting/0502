@@ -16,14 +16,10 @@ function draw() {
   push(); // 儲存當前繪圖狀態
   translate((windowWidth + capture.width) / 2, (windowHeight - capture.height) / 2); // 將影像移動到視窗中央
   scale(-1, 1); // 水平翻轉影像
-  image(capture, -capture.width / 2,-capture.height / 2,capture.width, capture.height); // 繪製翻轉後的影像
-  pop(); // 恢復原始繪圖狀態
+  image(capture, -capture.width / 2, -capture.height / 2, capture.width, capture.height); // 繪製翻轉後的影像
 
-  // 在影像上方繪製圖層
+  // 在影像上疊加圖層
   graphicsLayer.clear(); // 清除圖層內容
-  graphicsLayer.background('#e7d8c9'); // 設定圖層背景顏色為 e7d8c9
-
-  // 繪製固定顏色的網格與圓形
   graphicsLayer.noStroke(); // 禁用圓形的邊框
   graphicsLayer.fill('#eee4e1'); // 設定圓形顏色為 eee4e1
   for (let x = 0; x < graphicsLayer.width; x += 20) {
@@ -31,8 +27,8 @@ function draw() {
       graphicsLayer.ellipse(x + 10, y + 10, 15, 15); // 在每個網格單位內繪製圓形
     }
   }
-
-  image(graphicsLayer, -graphicsLayer.width / 2, -graphicsLayer.height / 2); // 將圖層疊加在影像上
+  image(graphicsLayer, -capture.width / 2, -capture.height / 2); // 將圖層疊加在影像上
+  pop(); // 恢復原始繪圖狀態
 }
 
 function windowResized() {
