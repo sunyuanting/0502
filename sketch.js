@@ -32,12 +32,8 @@ function draw() {
     }
   }
 
-  // 將整個圖層左右鏡像貼到畫布中央
-  push();
-  translate((width + capture.width) / 2, (height - capture.height) / 2);
-  scale(-1, 1);
-  image(graphicsLayer, 0, 0);
-  pop();
+  image(graphicsLayer, (width - capture.width) / 2, (height - capture.height) / 2);
+  // 顯示處理後的影像
 }
 
 function windowResized() {
