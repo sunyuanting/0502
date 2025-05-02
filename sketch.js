@@ -10,32 +10,34 @@ function setup() {
 }
 
 function draw() {
-  background('#ecf8f8'); // 設定背景顏色為 ecf8f8
-  push();
-  translate((width + capture.width) / 2, (height - capture.height) / 2); // 移動到正確位置
-  scale(-1, 1); // 左右翻轉
-  image(graphicsLayer, 0, 0); // 繪製翻轉後的影像
-  pop();
+  background('#ecf8f8');
 
-  // 在影像上方繪製圖層
-  graphicsLayer.clear(); // 清除圖層內容
-  graphicsLayer.background('#e7d8c9'); // 設定圖層背景顏色為 e7d8c9
+  graphicsLayer.clear();
+  graphicsLayer.background('#e7d8c9');
 
-  // 繪製網格與圓形，圓形顏色採用影像相對位置的顏色
-  capture.loadPixels(); // 載入影像的像素資料
-  graphicsLayer.noStroke(); // 禁用圓形的邊框
+  capture.loadPixels();
+  graphicsLayer.noStroke();
+
   for (let x = 0; x < graphicsLayer.width; x += 20) {
+    let flippedX = capture.width - x - 1;
+
     for (let y = 0; y < graphicsLayer.height; y += 20) {
-      let index = ((y * capture.width) + x) * 4; // 計算像素索引
-      let r = capture.pixels[index]; // 紅色通道
-      let g = capture.pixels[index + 1]; // 綠色通道
-      let b = capture.pixels[index + 2]; // 藍色通道
-      graphicsLayer.fill(r, g, b); // 設定圓形顏色
-      graphicsLayer.ellipse(x + 10, y + 10, 15, 15); // 在每個網格單位內繪製圓形
+      let index = (y * capture.width + flippedX) * 4;
+      let r = capture.pixels[index];
+      let g = capture.pixels[index + 1];
+      let b = capture.pixels[index + 2];
+
+      graphicsLayer.fill(r, g, b);
+      graphicsLayer.ellipse(x + 10, y + 10, 15, 15);
     }
   }
 
-  image(graphicsLayer, (width - capture.width) / 2, (height - capture.height) / 2); // 將圖層疊加在影像上
+  // 將整個圖層左右鏡像貼到畫布中央
+  push();
+  translate((width + capture.width) / 2, (height - capture.height) / 2);
+  scale(-1, 1);
+  image(graphicsLayer, 0, 0);
+  pop();
 }
 
 function windowResized() {
