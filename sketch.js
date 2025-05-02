@@ -29,7 +29,11 @@ function draw() {
     }
   }
 
-  image(graphicsLayer, (width - capture.width) / 2, (height - capture.height) / 2); // 將圖層疊加在影像上
+  // 進行水平翻轉
+  push(); // 開啟變換模式
+  scale(-1, 1); // 水平翻轉
+  image(graphicsLayer, -(width - capture.width) / 2, (height - capture.height) / 2); // 繪製翻轉後的圖層
+  pop(); // 恢復原來的畫布狀態
 }
 
 function windowResized() {
