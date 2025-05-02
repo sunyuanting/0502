@@ -21,6 +21,7 @@ function draw() {
 
   // 在影像上方繪製圖層
   graphicsLayer.clear(); // 清除圖層內容
+  graphicsLayer.background('#e7d8c9'); // 設定圖層背景顏色為 e7d8c9
 
   // 繪製網格與圓形，圓形顏色採用影像相對位置的顏色
   capture.loadPixels(); // 載入影像的像素資料
